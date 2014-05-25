@@ -42,16 +42,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	docker stop rp-node || true
 	docker stop web-node-1 || true
 	docker stop web-node-2 || true
-	docker stop web-clash-1 || true
-	docker stop web-clash-2 || true
-	docker stop web-clash-3 || true
 	docker stop app-node || true
 	docker rm rp-node || true
 	docker rm web-node-1 || true
 	docker rm web-node-2 || true
-	docker rm web-clash-1 || true
-	docker rm web-clash-2 || true
-	docker rm web-clash-3 || true
 	docker rm app-node || true
 SCRIPT
 	
@@ -91,11 +85,6 @@ SCRIPT
 		
 		d.build_image "/vagrant/docker/app-nodejs", args: "-t heig/app-nodejs"
 		d.run "app-node", image: "heig/app-nodejs", args: "-p 7070:80"
-		
-		d.build_image "/vagrant/docker/web-clash", args: "-t heig/web-clash"
-		d.run "web-clash-1", image: "heig/web-clash", args: "-p 8083:80"
-		d.run "web-clash-2", image: "heig/web-clash", args: "-p 8084:80"
-		d.run "web-clash-3", image: "heig/web-clash", args: "-p 8085:80"
 		
 	end
 
